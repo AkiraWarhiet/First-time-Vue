@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Dive Bar</h1>
+        <ul>
+            <li v-for = "stock in stocks" @click = "changeSelection(stock)">{{stock.name}}>>>{{stock.price}}</li>
+
+        </ul>
+        <p><b>Items Ordered:</b>{{lastThing}}</p>
+        <p><b>SubTotal:</b>${{totalPrice.toFixed(2)}}</p>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script>
+    var app = new Vue(
+        {
+            el: "#app",
+            data:{
+                totalPrice: 0.00,
+                lastThing: "Nothing selected yet",
+                stocks:[food = {name: "CheeseBurger", price: 6.99}, drink = {name: "Beer", price: 2.99}],
+            
+            },
+            methods:{
+                changeSelection(click){
+                    this.lastThing = click.name;
+                    this.totalPrice += click.price;
+                }
+            }
+        }
+    )
+    </script>
+</body>
+</html>

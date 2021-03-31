@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+<h1>My Nue Vue</h1>
+
+<div id="app">
+    {{message}}
+
+    <input v-model="message">
+    <button v-on:click = "changeMessage">change the message</button>
+
+    <ul>
+        <li v-for = "todo in todos" @click = "senMessage(todo)">{{todo}}</li>
+    </ul>
+    <button v-on:click="addItem">Add the Item in the input box</button>
+    <hr>
+
+    <button v-on:click = "increments">Increment Number of clicks</button>
+    <p v-show="click > 0">Number of Clicks: {{click}}</p>
+    <p>Number of clicks added to Five: {{click5}}</p>
+    <button v-on:click="decrement">Decrement number of clicks</button>
+    <hr>
+    <h4>Computed Properties</h4>
+    <p>{{click10}}</p>
+</div>
+    
+
+<script>
+    var app = new Vue(
+        {
+            el: "#app",
+            data:{
+                message: "Demon Hunter are the best",
+                todos: ["play", "eat", "sleep", "Repeat"],
+                click:0
+                
+            },
+            methods:{
+                senMessage(theMess)
+                {
+                    this.message = theMess;
+                },
+                changeMessage()
+                {
+                    this.message = "From the method"
+                },
+                addItem()
+                {
+                    this.todos.push(this.message)
+                },
+                increments()
+                {
+                    this.click++;
+                    this.click5 = this.click + 5;
+                },
+                decrement()
+                {
+                    this.click--;
+                    this.click5 = this.click + 5
+                }
+            },
+            computed:{
+                click10()
+                {
+                    return this.click + 10;
+                }
+            }
+        }
+    )
+</script>
+
+
+
+
+
+</body>
+</html>
